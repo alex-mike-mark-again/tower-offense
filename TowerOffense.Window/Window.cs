@@ -25,6 +25,7 @@ namespace TowerOffense.Window {
             _form.FormBorderStyle = FormBorderStyle.FixedSingle;
             _form.TopMost = true;
 
+
             _renderTarget = new SwapChainRenderTarget(
                 game.GraphicsDevice,
                 _form.Handle,
