@@ -63,7 +63,7 @@ namespace TowerOffense {
 
             foreach (var window in _windows) {
                 GraphicsDevice.SetRenderTarget(window.RenderTarget);
-                GraphicsDevice.Clear(Color.DarkSlateGray);
+                GraphicsDevice.Clear(new Color(40, 45, 50));
 
                 window.RenderTarget.Present();
             }
