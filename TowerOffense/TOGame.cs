@@ -7,19 +7,22 @@ using ButtonState = Microsoft.Xna.Framework.Input.ButtonState;
 using Keys = Microsoft.Xna.Framework.Input.Keys;
 
 using TowerOffense.Window;
-
+using System;
 
 namespace TowerOffense {
     public class TOGame : Game {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
-        private const int SCREENX = 250, SCREENY = 250;
         private List<TOWindow> _windows;
+
+        private Random _random;
 
         public TOGame() {
             _graphics = new GraphicsDeviceManager(this);
             _windows = new List<TOWindow>();
+
+            _random = new Random();
 
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
@@ -27,8 +30,14 @@ namespace TowerOffense {
 
         protected override void Initialize() {
 
-            _windows.Add(new TOWindow(this, 120, 120));
-            _windows.Add(new TOWindow(this, 120, 120));
+            for (int i = 0; i < 25; i++) {
+                var window = new TOWindow(this, 120, 120);
+                window.Position = new Point(
+                    _random.Next(GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width - 120),
+                    _random.Next(GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height - 120)
+                );
+                _windows.Add(window);
+            }
 
             base.Initialize();
         }
@@ -36,14 +45,16 @@ namespace TowerOffense {
         protected override void LoadContent() {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // TODO: use this.Content to load your game content here
         }
 
         protected override void Update(GameTime gameTime) {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            // TODO: Add your update logic here
+            // window movement test
+            foreach (var window in _windows) {
+                window.Position = window.Position += new Point(_random.Next(-1, 2), _random.Next(-1, 2));
+            }
 
             base.Update(gameTime);
         }
@@ -59,7 +70,7 @@ namespace TowerOffense {
 
             GraphicsDevice.SetRenderTarget(null);
             GraphicsDevice.Clear(Color.Black);
-            // TODO Draw primary screen here
+
             base.Draw(gameTime);
         }
     }

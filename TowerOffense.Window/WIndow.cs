@@ -6,13 +6,20 @@ namespace TowerOffense.Window {
     class TOWindow {
 
         public SwapChainRenderTarget RenderTarget { get => _renderTarget; }
+        public Point Position { get => _window.Position; set => _window.Position = value; }
 
+        private GameWindow _window;
         private Form _form;
         private SwapChainRenderTarget _renderTarget;
 
         public TOWindow(Game game, int width, int height) {
 
-            _form = (Form)Form.FromHandle(GameWindow.Create(game, width, height).Handle);
+            _window = GameWindow.Create(game, width, height);
+            _form = (Form)Form.FromHandle(_window.Handle);
+
+
+
+            //_form = (Form)Form.FromHandle(.Handle);
 
             _form.Visible = true;
             _form.ShowIcon = false;
@@ -20,6 +27,7 @@ namespace TowerOffense.Window {
             _form.MaximizeBox = false;
             _form.Text = "";
             _form.FormBorderStyle = FormBorderStyle.FixedSingle;
+            _form.TopMost = true;
 
 
             _renderTarget = new SwapChainRenderTarget(
