@@ -17,10 +17,6 @@ namespace TowerOffense.Window {
             _window = GameWindow.Create(game, width, height);
             _form = (Form)Form.FromHandle(_window.Handle);
 
-
-
-            //_form = (Form)Form.FromHandle(.Handle);
-
             _form.Visible = true;
             _form.ShowIcon = false;
             _form.MinimizeBox = false;
@@ -28,7 +24,6 @@ namespace TowerOffense.Window {
             _form.Text = "";
             _form.FormBorderStyle = FormBorderStyle.FixedSingle;
             _form.TopMost = true;
-
 
             _renderTarget = new SwapChainRenderTarget(
                 game.GraphicsDevice,
