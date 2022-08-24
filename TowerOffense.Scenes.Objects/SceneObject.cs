@@ -3,8 +3,7 @@ using Microsoft.Xna.Framework;
 namespace TowerOffense.Scenes.Objects {
     public abstract class SceneObject {
 
-
-        public bool isDestroyed { get; private set; } = false;
+        public bool IsDestroyed { get; private set; } = false;
 
         protected Scene Scene;
 
@@ -13,7 +12,7 @@ namespace TowerOffense.Scenes.Objects {
         }
 
         public void Destroy() {
-            isDestroyed = true;
+            IsDestroyed = true;
         }
 
         public abstract void Update(GameTime gameTime);
