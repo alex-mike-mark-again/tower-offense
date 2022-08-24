@@ -1,5 +1,11 @@
 ﻿
 using TowerOffense;
+using TowerOffense.Scenes.TestScene;
 
-using var game = new TOGame();
-game.Run();
+internal class Program {
+    private static void Main(string[] args) {
+        using var game = new TOGame();
+        TOGame.Scenes.PushScene<TestScene>();
+        game.Run();
+    }
+}
