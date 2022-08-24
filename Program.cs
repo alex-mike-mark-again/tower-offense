@@ -1,6 +1,6 @@
 ﻿
 using TowerOffense;
-using TowerOffense.Scenes.TestScene;
+using TowerOffense.Scenes.ExampleScene;
 
 internal class Program {
     private static void Main(string[] args) {
