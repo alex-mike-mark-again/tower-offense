@@ -9,6 +9,8 @@ using Keys = Microsoft.Xna.Framework.Input.Keys;
 using TowerOffense.Window;
 using System;
 
+using FileCheck;
+
 namespace TowerOffense {
     public class TOGame : Game {
         private GraphicsDeviceManager _graphics;
@@ -18,11 +20,16 @@ namespace TowerOffense {
 
         private Random _random;
 
+        private TOFiles _files;
+
         public TOGame() {
             _graphics = new GraphicsDeviceManager(this);
             _windows = new List<TOWindow>();
 
             _random = new Random();
+
+            _files = new TOFiles();
+            _files.Test();
 
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
