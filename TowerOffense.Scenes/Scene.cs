@@ -19,13 +19,10 @@ namespace TowerOffense.Scenes {
             }
         }
 
-
         public void AddObjects<T>(IEnumerable<T> _sceneObjects) where T : SceneObject {
             foreach (var sceneObject in _sceneObjects) AddObject(sceneObject);
         } 
-
-
-        
+                
         public void Update(GameTime gameTime) {
             float[,] distances = new float[_sceneWindows.Count,_sceneWindows.Count];
             foreach (var sceneObject in _sceneObjects.Where(obj => !obj.IsDestroyed)) {
