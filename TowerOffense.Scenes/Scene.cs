@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace TowerOffense.Scenes {
 
-    public class Scene {
+    public class Scene { 
 
         private List<SceneObject> _sceneObjects = new();
         private List<SceneWindow> _sceneWindows = new();
@@ -19,13 +19,29 @@ namespace TowerOffense.Scenes {
             }
         }
 
+
         public void AddObjects<T>(IEnumerable<T> _sceneObjects) where T : SceneObject {
             foreach (var sceneObject in _sceneObjects) AddObject(sceneObject);
-        }
+        } 
 
+
+        
         public void Update(GameTime gameTime) {
+            float[,] distances = new float[_sceneWindows.Count,_sceneWindows.Count];
             foreach (var sceneObject in _sceneObjects.Where(obj => !obj.IsDestroyed)) {
                 sceneObject.Update(gameTime);
+            }
+
+            List<SceneWindow> _extantWindows = _sceneWindows.Where( obj => !obj.IsDestroyed ).ToList<SceneWindow>(); //YO
+            for (int i = 0; i < _extantWindows.Count; i++)
+            {
+                for (int j = i+1; j < _extantWindows.Count; j++)
+                {
+                    Point pt0 = _extantWindows[i].Position;
+                    Point pt1 = _extantWindows[j].Position;
+                    float euclideanDiff = Vector2.Distance(pt0.ToVector2(),pt1.ToVector2());
+                    distances[i,j] = euclideanDiff;
+                }
             }
 
             _sceneObjects.RemoveAll(obj => obj.IsDestroyed);
