@@ -11,7 +11,7 @@ namespace TowerOffense.Scenes.Objects {
             Scene = scene;
         }
 
-        public void Destroy() {
+        public virtual void Destroy() {
             IsDestroyed = true;
         }
 

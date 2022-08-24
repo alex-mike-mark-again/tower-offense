@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using TowerOffense.Scenes.Objects;
 using TowerOffense.Window;
 using System.Reflection;
+using System.Linq;
 
 namespace TowerOffense.Scenes {
 
@@ -20,13 +21,12 @@ namespace TowerOffense.Scenes {
         }
 
         public void Update(GameTime gameTime) {
-            foreach (var sceneObject in _sceneObjects) {
+            foreach (var sceneObject in _sceneObjects.Where(obj => !obj.IsDestroyed)) {
                 sceneObject.Update(gameTime);
-
-                // maybe this shouldnt be here?
-                _sceneObjects.RemoveAll(obj => obj.IsDestroyed);
-                _windowObjects.RemoveAll(obj => obj.IsDestroyed);
             }
+
+            _sceneObjects.RemoveAll(obj => obj.IsDestroyed);
+            _windowObjects.RemoveAll(obj => obj.IsDestroyed);
         }
 
         public void Render(GameTime gameTime) {

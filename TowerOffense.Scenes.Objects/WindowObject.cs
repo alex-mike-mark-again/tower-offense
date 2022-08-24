@@ -27,6 +27,10 @@ namespace TowerOffense.Window {
             _form.FormBorderStyle = FormBorderStyle.FixedSingle;
             _form.TopMost = true;
 
+            _form.FormClosed += (sender, e) => {
+                Destroy();
+            };
+
             _renderTarget = new SwapChainRenderTarget(
                 game.GraphicsDevice,
                 _window.Handle,
@@ -38,6 +42,12 @@ namespace TowerOffense.Window {
                 1,
                 RenderTargetUsage.PlatformContents,
                 PresentInterval.Default);
+        }
+
+        public override void Destroy() {
+            base.Destroy();
+            _form.Dispose();
+            _renderTarget.Dispose();
         }
 
         public abstract void Render(GameTime gameTime);
