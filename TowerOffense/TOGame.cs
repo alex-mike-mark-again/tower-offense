@@ -26,8 +26,6 @@ namespace TowerOffense {
         private SpriteBatch _spriteBatch;
         private Random _random;
 
-        private List<WindowObject> _windows;
-
         public TOGame() {
 
             Instance = this;
@@ -35,7 +33,6 @@ namespace TowerOffense {
             _scenes = new SceneManager();
             _commandQueue = new Queue<Action>();
             _graphics = new GraphicsDeviceManager(this);
-            _windows = new List<WindowObject>();
             _random = new Random();
 
             Content.RootDirectory = "Content";

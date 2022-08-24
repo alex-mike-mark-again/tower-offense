@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework;
 namespace TowerOffense.Scenes.Objects {
     public abstract class SceneObject {
 
-        public bool IsDestroyed { get; private set; } = false;
+        public bool IsDestroyed { get; private set; }
 
         protected Scene Scene;
 
