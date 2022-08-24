@@ -28,7 +28,6 @@ namespace TowerOffense.Scenes {
         public void Render(GameTime gameTime) {
             var graphicsDevice = TOGame.Instance.GraphicsDevice;
             foreach (var windowObject in _windowObjects) {
-                System.Console.WriteLine(windowObject.GetType().Name);
                 graphicsDevice.SetRenderTarget(windowObject.RenderTarget);
                 graphicsDevice.Clear(windowObject.ClearColor);
 
