@@ -1,5 +1,4 @@
 using Microsoft.Xna.Framework;
-using TowerOffense.Window;
 
 namespace TowerOffense.Scenes.TestScene.Objects {
     public class ChildTestWindow : TestWindow {

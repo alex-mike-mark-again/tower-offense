@@ -3,8 +3,8 @@ using TowerOffense.Scenes.TestScene.Objects;
 using TowerOffense.Window;
 
 namespace TowerOffense.Scenes.TestScene {
-    public class TestScene : Scene {
-        public TestScene() : base() {
+    public class ExampleScene : Scene {
+        public ExampleScene() : base() {
             var window = new TestWindow(this, 200, 200);
             window.ClearColor = Color.Black;
             window.Position = Point.Zero;
