@@ -13,12 +13,12 @@ namespace TowerOffense.Displays {
         }
 
         public override void Update(GameTime gameTime){
-            _text = TOGame.PlayerManager.Cash.ToString();
+            _text = "$$"+TOGame.PlayerManager.Cash.ToString();
             base.Update(gameTime);
         }
         public override void Render(GameTime gameTime){
             Vector2 textMiddlePoint = _font.MeasureString(_text) / 2;
-            Vector2 position = new Vector2(48,48); // some work to center this would be cool
+            Vector2 position = new Vector2(0,this.InnerSize.Y/2); // some work to center this would be cool
             DrawString(_font, _text, position, Color.Yellow);
             base.Render(gameTime);
         }
