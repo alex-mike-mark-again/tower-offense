@@ -14,12 +14,12 @@ namespace TowerOffense.Scenes.Example.Objects {
         private double _time;
         private Random _random;
 
-        public Worm(Scene scene, Point position, Point size, int numSegments, int titleBarHeight, int borderThickness) : base(scene, position, size, titleBarHeight, borderThickness) {
+        public Worm(Point position, Point size, int numSegments, int titleBarHeight, int borderThickness) : base(position, size, titleBarHeight, borderThickness) {
             _position = new Vector2(position.X, position.Y);
             _segments = new List<Segment>();
             _random = new Random();
             for (int i = 0; i < numSegments; i++) {
-                _segments.Add(new Segment(Scene, position, new Point(60 - 5 * i, 60 - 5 * i), this));
+                _segments.Add(new Segment(position, new Point(60 - 5 * i, 60 - 5 * i), this));
             }
         }
 

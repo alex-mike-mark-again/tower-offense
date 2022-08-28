@@ -1,4 +1,3 @@
-using System;
 using Microsoft.Xna.Framework;
 using TowerOffense.Objects.Base;
 
@@ -9,7 +8,7 @@ namespace TowerOffense.Scenes.Example.Objects {
         private double _timeThreshold;
         private SceneWindow _window;
 
-        public WindowDeleter(Scene scene, SceneWindow window, double timeThreshold) : base(scene) {
+        public WindowDeleter(SceneWindow window, double timeThreshold) : base() {
             _timeThreshold = timeThreshold;
             _window = window;
         }

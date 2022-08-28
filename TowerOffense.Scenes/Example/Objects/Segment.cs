@@ -6,7 +6,7 @@ namespace TowerOffense.Scenes.Example.Objects {
 
         private SceneWindow _sceneWindow;
 
-        public Segment(Scene scene, Point position, Point size, SceneWindow sceneWindow) : base(scene, position, size) {
+        public Segment(Point position, Point size, SceneWindow sceneWindow) : base(position, size) {
         }
 
         public override void Update(GameTime gameTime) {

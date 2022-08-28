@@ -1,6 +1,5 @@
 using Microsoft.Xna.Framework;
 using TowerOffense.Objects.Base;
-using TowerOffense.Scenes;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace TowerOffense.Objects {
@@ -8,7 +7,7 @@ namespace TowerOffense.Objects {
         private SpriteFont _font;
         private string _text;
 
-        public HpDisplay(Scene scene, Point position, Point size) : base(scene, position, size) {
+        public HpDisplay(Point position, Point size) : base(position, size) {
             _font = TOGame.Instance.Content.Load<SpriteFont>("Fonts/HpDisplay");
         }
 

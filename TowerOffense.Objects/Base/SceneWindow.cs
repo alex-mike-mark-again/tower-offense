@@ -3,7 +3,6 @@ using System.Windows.Forms;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using TowerOffense.Scenes;
 using ButtonState = Microsoft.Xna.Framework.Input.ButtonState;
 
 namespace TowerOffense.Objects.Base {
@@ -76,7 +75,7 @@ namespace TowerOffense.Objects.Base {
 
         private SwapChainRenderTarget _renderTarget;
 
-        public SceneWindow(Scene scene, Point position, Point size, int titleBarHeight = 24, int borderThickness = 1) : base(scene) {
+        public SceneWindow(Point position, Point size, int titleBarHeight = 24, int borderThickness = 1) : base() {
 
             var game = TOGame.Instance;
             _window = GameWindow.Create(game, 0, 0);

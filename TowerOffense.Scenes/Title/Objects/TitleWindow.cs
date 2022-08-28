@@ -1,10 +1,6 @@
-using System;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 using TowerOffense.Objects.Base;
 using TowerOffense.Objects.Common;
-using TowerOffense.Scenes;
 using TowerOffense.Scenes.Example;
 
 namespace TowerOffense.Scenes.Title.Objects {
@@ -12,7 +8,7 @@ namespace TowerOffense.Scenes.Title.Objects {
 
         private Button _playButton;
 
-        public TitleWindow(Scene scene, Point position, Point size) : base(scene, position, size) {
+        public TitleWindow(Point position, Point size) : base(position, size) {
 
             var playButtonSize = new Point(96, 64);
 

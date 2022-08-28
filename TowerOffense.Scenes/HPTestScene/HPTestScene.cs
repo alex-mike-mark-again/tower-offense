@@ -7,8 +7,8 @@ namespace TowerOffense.Scenes.HpTest {
         private HpKiller hpKiller;
         private HpDisplay hpDisplay;
         public HpTestScene(){
-            hpKiller = new HpKiller(this);
-            hpDisplay = new HpDisplay(this,new Point(0,0),new Point(120,120));
+            hpKiller = new HpKiller();
+            hpDisplay = new HpDisplay(new Point(0,0),new Point(120,120));
             this.AddObject(hpKiller);
             this.AddObject(hpDisplay);
         }

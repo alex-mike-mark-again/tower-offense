@@ -1,5 +1,4 @@
 using Microsoft.Xna.Framework;
-using TowerOffense;
 using TowerOffense.Objects.Base;
 
 namespace TowerOffense.Scenes.HpTest.Objects {
@@ -8,7 +7,7 @@ namespace TowerOffense.Scenes.HpTest.Objects {
         private double timeCount = 0;
         private double timeLimit = 1;
 
-        public HpKiller(Scene scene) : base(scene) { }
+        public HpKiller() : base() { }
 
         public override void Update(GameTime gameTime) {
             timeCount += gameTime.ElapsedGameTime.TotalSeconds;
