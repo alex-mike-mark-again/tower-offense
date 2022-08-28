@@ -1,5 +1,5 @@
 using TowerOffense.Scenes.HpTest.Objects;
-using TowerOffense.Objects;
+using TowerOffense.Displays;
 using Microsoft.Xna.Framework;
 namespace TowerOffense.Scenes.HpTest {
 
