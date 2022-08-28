@@ -3,7 +3,7 @@ using TowerOffense.Objects.Base;
 using TowerOffense.Scenes;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace TowerOffense.Objects {
+namespace TowerOffense.Displays {
     public class HpDisplay : SceneWindow {
         private SpriteFont _font;
         private string _text;
@@ -18,7 +18,7 @@ namespace TowerOffense.Objects {
         }
         public override void Render(GameTime gameTime){
             Vector2 textMiddlePoint = _font.MeasureString(_text) / 2;
-            Vector2 position = new Vector2(48,48); // some work to center this would be cool
+            Vector2 position = new Vector2(0,this.InnerSize.Y/2); // some work to center this would be cool
             DrawString(_font, _text, position, Color.Red);
             base.Render(gameTime);
         }
