@@ -1,10 +1,12 @@
 ﻿using TowerOffense;
-using TowerOffense.Scenes.ExampleScene;
+using TowerOffense.Scenes.Example;
+using TowerOffense.Scenes.Title;
+using TowerOffense.Scenes.HpTest;
 
 public class Program {
     private static void Main(string[] args) {
         using var game = new TOGame();
-        TOGame.Scenes.PushScene<ExampleScene>();
+        TOGame.Scenes.PushScene<TitleScene>();
         game.Run();
     }
 }

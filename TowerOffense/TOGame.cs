@@ -6,10 +6,10 @@ using Microsoft.Xna.Framework.Input;
 using ButtonState = Microsoft.Xna.Framework.Input.ButtonState;
 using Keys = Microsoft.Xna.Framework.Input.Keys;
 
-using TowerOffense.Window;
 using System;
 using TowerOffense.Scenes;
 using Microsoft.Xna.Framework.Content;
+using TowerOffense.Extensions;
 
 using FileCheck;
 
@@ -18,26 +18,32 @@ namespace TowerOffense {
 
         public static TOGame Instance;
 
+        public static AssetManager Assets { get => Instance._assets; }
         public static SceneManager Scenes { get => Instance._scenes; }
         public static SpriteBatch SpriteBatch { get => Instance._spriteBatch; }
         public static Random Random { get => Instance._random; }
+        public static PlayerManager PlayerManager { get => Instance._playerManager; }
 
+        private AssetManager _assets;
         private SceneManager _scenes;
         private Queue<Action> _commandQueue;
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         private Random _random;
+        private PlayerManager _playerManager;
 
         private TOFiles _files;
 
-        public TOGame() {
+        public TOGame() : base() {
 
             Instance = this;
 
+            _assets = new AssetManager(Content);
             _scenes = new SceneManager();
             _commandQueue = new Queue<Action>();
             _graphics = new GraphicsDeviceManager(this);
             _random = new Random();
+            _playerManager = PlayerManager.Instance;
 
             _files = new TOFiles();
             _files.Test();
@@ -55,18 +61,58 @@ namespace TowerOffense {
         }
 
         protected override void Initialize() {
+
+
+            IsFixedTimeStep = false;
+            _graphics.SynchronizeWithVerticalRetrace = false;
+
+            var form = (Form)Form.FromHandle(Window.Handle);
+            form.FormBorderStyle = FormBorderStyle.None;
+            form.VisibleChanged += (_, _) => {
+                if (form.Visible) form.Visible = false;
+            };
+
             base.Initialize();
         }
 
         protected override void LoadContent() {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
+
+            // prob should make something more dynamic
+            _assets.LoadTexture("Sprites/Title");
+            _assets.LoadTexture("Sprites/PlayButton");
+            _assets.LoadTexture("Sprites/PlayButtonHover");
+            _assets.LoadTexture("Sprites/Close");
+            _assets.LoadTexture("Sprites/TowerTargetArrow");
+
+            //gravity
+            _assets.LoadTexture("Sprites/GravityTower1");
+            _assets.LoadTexture("Sprites/GravityTower2");
+            _assets.LoadTexture("Sprites/GravityTowerAttack");
+
+            //particles
+            _assets.LoadTexture("Sprites/HitParticle1");
+            _assets.LoadTexture("Sprites/HitParticle2");
+            _assets.LoadTexture("Sprites/HitParticle3");
+
+            //spider
+            _assets.LoadTexture("Sprites/SpiderActive1");
+            _assets.LoadTexture("Sprites/SpiderActive2");
+            _assets.LoadTexture("Sprites/SpiderStartup");
+            _assets.LoadTexture("Sprites/SpiderAttack1");
+            _assets.LoadTexture("Sprites/SpiderAttack2");
+            _assets.LoadTexture("Sprites/SpiderAttack3");
+            _assets.LoadTexture("Sprites/SpiderNeutralized1");
+            _assets.LoadTexture("Sprites/SpiderNeutralized2");
+
+            base.LoadContent();
         }
 
         protected override void Update(GameTime gameTime) {
 
-            while (_commandQueue.Count > 0) {
-                _commandQueue.Dequeue().Invoke();
-            }
+            System.Console.WriteLine(1 / gameTime.DeltaTime());
+
+            while (_commandQueue.Count > 0) _commandQueue.Dequeue().Invoke();
 
             Scenes.CurrentScene.Update(gameTime);
 
@@ -79,9 +125,7 @@ namespace TowerOffense {
         protected override void Draw(GameTime gameTime) {
 
             _scenes.CurrentScene.Render(gameTime);
-
             GraphicsDevice.SetRenderTarget(null);
-            GraphicsDevice.Clear(Color.Black);
 
             base.Draw(gameTime);
         }
